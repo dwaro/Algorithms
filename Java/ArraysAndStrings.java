@@ -78,4 +78,65 @@ public class ArraysAndStrings {
 		return true;
 	}
 	
+	/* Algorithm takes a string and its length as input and replaces all occurrences of
+	 * a space with '%20'.
+	 * 
+	 * Assumption is that the string has space at the end to hold the additional characters.
+	 * 
+	 * Time complexity: O(n log(n))
+	 * 
+	 * Could improve to O(n) by simply iterating through the char array, and noting the indices
+	 * of spaces. Then create a new array of length of the string, and if the index is a space
+	 * index, then add in the %20, and then continue moving forward until you hit
+	 * str.length - 2 * #_of_spaces.
+	 * 
+	 * 
+	 */
+	public String URLify(String str, int length) {
+		char[] letters = str.toCharArray();
+		
+		for (int i = 0; i < letters.length; i++) {
+			int val = letters[i];
+			if (val == ' ') {
+				shiftRight(letters, i);
+				letters[i] = '%';
+				letters[i+1] = '2';
+				letters[i+2] = '0';
+			}
+		}
+		
+		String result = String.valueOf(letters);
+		
+		return result;
+	}
+	
+	private void shiftRight(char[] letters, int index) {
+		for (int i = letters.length - 3; i > index; i--) {
+			letters[i+2] = letters[i];
+		}
+	}
+	
+	/* Implementation has time complexity = O(n), with the additional of requiring more
+	 * space. 
+	 * 
+	 */
+	public String URLify2(String str, int trueLength) {
+		char[] letters = str.toCharArray();
+		char[] result = new char[letters.length];
+		
+		int pos = 0;
+		for (int i = letters.length; i < trueLength; i++) {
+			if (letters[i] == ' ') {
+				result[pos] = '%';
+				result[pos++] = '2';
+				result[pos++] = '0';
+			} else {
+				result[i] = letters[i];
+			}
+			pos++;
+		}
+		
+		return String.valueOf(result);
+	}
+	
 }

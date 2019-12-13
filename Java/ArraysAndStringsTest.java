@@ -24,5 +24,17 @@ class ArraysAndStringsTest {
 			fail("ArraysAndStrings.CheckPermutation() must return a boolean value.");
 		}
 	}
+	
+	@Test
+	void testURLify() {
+		assertEquals("Hello,%20my%20name%20is%20David", aryStr.URLify("Hello, my name is David        ", 23));
+		assertEquals("Mr%20John%20Smith", aryStr.URLify("Mr John Smith    ", 13));
+	}
+	
+	@Test
+	void testURLify2() {
+		assertEquals("Hello,%20my%20name%20is%20David", aryStr.URLify("Hello, my name is David        ", 23));
+		assertEquals("Mr%20John%20Smith", aryStr.URLify("Mr John Smith    ", 13));
+	}
 
 }
