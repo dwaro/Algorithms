@@ -41,4 +41,41 @@ public class ArraysAndStrings {
 		return true;
 	}
 	
+	
+	/* Algorithm is given two strings, and checks if one is a permutation of the other.
+	 * 
+	 * If the two strings are of different lengths, the cannot be permutations of each other.
+	 * The permutations are case sensitive, so "Hello World" is different than "hello world".
+	 * 
+	 * Time complexity: O(n) where n is the length of both strings. We look through all of
+	 * string 1, length n. We then look through all of string 2 unless we find it has a
+	 * variance from string 1, in which case we return early.
+	 * 
+	 * A second solution is to sort the strings as char arrays and return whether they are
+	 * equal to each other.
+	 * 
+	 */
+	public boolean CheckPermutation(String str1, String str2) {
+		if (str1.length() != str2.length()) return false;
+		
+		HashMap<Character, Integer> map1 = new HashMap<Character, Integer>();
+		
+		for (int i = 0; i < str1.length(); i++) {
+			char val = str1.charAt(i);
+			if (map1.containsKey(val)) {
+				map1.put(val, map1.get(val) + 1);
+			} else {
+				map1.put(val, 1);
+			}
+		}
+		
+		for (int j = 0; j < str2.length(); j++) {
+			char val = str2.charAt(j);
+			if (!map1.containsKey(val) || map1.get(val) < 1) return false;
+			map1.put(val, map1.get(val) - 1);
+		}
+		
+		return true;
+	}
+	
 }
