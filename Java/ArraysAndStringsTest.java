@@ -36,5 +36,12 @@ class ArraysAndStringsTest {
 		assertEquals("Hello,%20my%20name%20is%20David", aryStr.URLify("Hello, my name is David        ", 23));
 		assertEquals("Mr%20John%20Smith", aryStr.URLify("Mr John Smith    ", 13));
 	}
+	
+	@Test
+	void testPalindromePermutation() {
+		assertTrue(aryStr.PalindromePermutation("taco cat"));
+		assertTrue(aryStr.PalindromePermutation("tcac ota"));
+		assertFalse(aryStr.PalindromePermutation("tca ota"));
+	}
 
 }

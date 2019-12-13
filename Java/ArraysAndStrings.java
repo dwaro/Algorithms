@@ -139,4 +139,39 @@ public class ArraysAndStrings {
 		return String.valueOf(result);
 	}
 	
+	/* Algorithm checks whether the input string is a permutation of a palindrome. It only
+	 * checks characters that are letters.
+	 * 
+	 * Time complexity: O(n), we iterate through the string once, keeping track of how many
+	 * keys in the map have an odd frequency (can only be a palindrome if there are 1 or
+	 * less characters with an odd count).
+	 * 
+	 */
+	public boolean PalindromePermutation(String str) {
+		HashMap<Character, Integer> lettermap = new HashMap<Character, Integer>();
+		
+		int oddCount = 0, frequency = 0;
+		
+		for (int i = 0; i < str.length(); i++) {
+			char val = str.charAt(i);
+			if (Character.isLetter(val)) {
+				if (!lettermap.containsKey(val)) {
+					oddCount++;
+					lettermap.put(val, 1);
+				} else {
+					frequency = lettermap.get(val);
+					if (frequency % 2 == 0) {
+						oddCount++;
+					} else {
+						oddCount--;
+					}
+					lettermap.put(val, frequency + 1);
+				}
+			}
+		}
+		
+		if (oddCount < 2) return true;
+		return false;
+	}
+	
 }
