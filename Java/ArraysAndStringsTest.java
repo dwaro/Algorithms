@@ -57,5 +57,15 @@ class ArraysAndStringsTest {
 		assertFalse(aryStr.OneAway("lion", "lioness"));
 		assertFalse(aryStr.OneAway("Hello world", "world"));
 	}
+	
+	@Test
+	void testCompress() {
+		assertEquals("a2b1c5a3", aryStr.Compress("aabcccccaaa"));
+		assertEquals("a", aryStr.Compress("a"));
+		assertEquals("abc", aryStr.Compress("abc"));
+		assertEquals("aa", aryStr.Compress("aa"));
+		assertEquals("j2a4k5e1", aryStr.Compress("jjaaaakkkkke"));
+		assertEquals("A2a2D3r2E2", aryStr.Compress("AAaaDDDrrEE"));
+	}
 
 }

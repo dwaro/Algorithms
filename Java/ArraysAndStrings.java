@@ -206,4 +206,32 @@ public class ArraysAndStrings {
 		return true;
 	}
 	
+	/* Algorithm returns a string compression, where the occurrence of contiguous
+	 * letters is replaced with the letter and the count of the letter. If the
+	 * compression results in a longer string, then we return the original string.
+	 * 
+	 * Time Complexity: O(n);
+	 * 
+	 */
+	public String Compress(String s1) {
+		int s1Length = s1.length();
+		if (s1Length == 1) return s1;
+		
+		StringBuilder result = new StringBuilder();
+		
+		int count = 0;
+		for (int i = 0; i < s1Length; i++) {
+			count++;
+			char val = s1.charAt(i);
+			if (i + 1 >= s1Length || val != s1.charAt(i+1)) {
+				result.append(String.valueOf(val) + String.valueOf(count));
+				if (result.length() >= s1Length) return s1;
+				count = 0;
+			}
+		}
+		
+		String compressed = result.toString();
+		return compressed.length() >= s1Length ? s1 : compressed;
+	}
+	
 }
