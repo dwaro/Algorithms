@@ -174,4 +174,36 @@ public class ArraysAndStrings {
 		return false;
 	}
 	
+	/* Algorithm checks to see if two strings are within 1 edits difference from
+	 * each other.
+	 * 
+	 * Time complexity: O(n) where n is the length of the strings if they are
+	 * equal lengths, otherwise n is the length of the longer string.
+	 * - If difference between string lengths > 1, then the runtime is O(1).
+	 * 
+	 */
+	public boolean OneAway(String str1, String str2) {
+		if (Math.abs(str1.length() - str2.length()) > 1) return false;
+		if (str1.equals(str2)) return true;
+		
+		if (str1.length() < str2.length()) {
+			CompareStrings(str2, str1);
+		}
+		
+		return CompareStrings(str1, str2);
+	}
+	
+	private boolean CompareStrings(String s1, String s2) {
+		int pos = 0, diffs = 0;
+		for (int i = 0; i < s1.length(); i++) {
+			if (pos < s2.length() && s1.charAt(i) != s2.charAt(pos)) {
+				diffs++;
+				if (s1.length() != s2.length()) pos--;
+			}
+			if (diffs > 1) return false;
+			pos++;
+		}
+		return true;
+	}
+	
 }
