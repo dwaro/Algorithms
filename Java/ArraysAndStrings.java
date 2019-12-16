@@ -6,7 +6,8 @@ public class ArraysAndStrings {
 		
 	}
 	
-	/* Algorithm determines if a string has all unique characters.
+	/* 
+	 * Algorithm determines if a string has all unique characters.
 	 * 
 	 * Is string ASCII or UNICODE?
 	 * ---------------------------
@@ -42,7 +43,8 @@ public class ArraysAndStrings {
 	}
 	
 	
-	/* Algorithm is given two strings, and checks if one is a permutation of the other.
+	/* 
+	 * Algorithm is given two strings, and checks if one is a permutation of the other.
 	 * 
 	 * If the two strings are of different lengths, the cannot be permutations of each other.
 	 * The permutations are case sensitive, so "Hello World" is different than "hello world".
@@ -78,7 +80,8 @@ public class ArraysAndStrings {
 		return true;
 	}
 	
-	/* Algorithm takes a string and its length as input and replaces all occurrences of
+	/* 
+	 * Algorithm takes a string and its length as input and replaces all occurrences of
 	 * a space with '%20'.
 	 * 
 	 * Assumption is that the string has space at the end to hold the additional characters.
@@ -116,7 +119,8 @@ public class ArraysAndStrings {
 		}
 	}
 	
-	/* Implementation has time complexity = O(n), with the additional of requiring more
+	/* 
+	 * Implementation has time complexity = O(n), with the additional of requiring more
 	 * space. 
 	 * 
 	 */
@@ -139,7 +143,8 @@ public class ArraysAndStrings {
 		return String.valueOf(result);
 	}
 	
-	/* Algorithm checks whether the input string is a permutation of a palindrome. It only
+	/* 
+	 * Algorithm checks whether the input string is a permutation of a palindrome. It only
 	 * checks characters that are letters.
 	 * 
 	 * Time complexity: O(n), we iterate through the string once, keeping track of how many
@@ -174,7 +179,8 @@ public class ArraysAndStrings {
 		return false;
 	}
 	
-	/* Algorithm checks to see if two strings are within 1 edits difference from
+	/* 
+	 * Algorithm checks to see if two strings are within 1 edits difference from
 	 * each other.
 	 * 
 	 * Time complexity: O(n) where n is the length of the strings if they are
@@ -206,7 +212,8 @@ public class ArraysAndStrings {
 		return true;
 	}
 	
-	/* Algorithm returns a string compression, where the occurrence of contiguous
+	/* 
+	 * Algorithm returns a string compression, where the occurrence of contiguous
 	 * letters is replaced with the letter and the count of the letter. If the
 	 * compression results in a longer string, then we return the original string.
 	 * 
@@ -234,4 +241,73 @@ public class ArraysAndStrings {
 		return compressed.length() >= s1Length ? s1 : compressed;
 	}
 	
+	/* 
+	 * This method rotates an image by 90 degrees. It takes an N x N matrix to
+	 * represent the image. Each pixel in the image is represented by an integer.
+	 * 
+	 * | 0 0 0 1 |     | 0 0 0 0 |
+	 * | 0 1 1 1 | --> | 1 1 1 0 |
+	 * | 0 1 1 1 |	   | 1 1 1 0 |
+	 * | 0 1 1 1 |	   | 1 1 1 1 |
+	 * 
+	 * Rotating the matrix requires O(n^2) time, assuming the matrix is n x n.
+	 * 
+	 * This approach uses O(n^2) space, but if we edit it in place, we can
+	 * achieve O(1) space.
+	 * 
+	 */
+	public int[][] Rotate90(int[][] matrix) {
+		int[][] newmatrix = new int[matrix.length][matrix[0].length];
+		int newrow = 0, newcol = 0, val = 0;
+		int width = matrix[0].length;
+		
+		for (int row = 0; row < matrix.length; row++) {
+			for (int col = 0; col < matrix[0].length; col++) {
+				val = matrix[row][col];
+				newrow = col;
+				newcol = width - 1 - row;
+				newmatrix[newrow][newcol] = val;
+			}
+		}
+		
+		return newmatrix;
+		
+	}
+	
+	/* 
+	 * This approach is still O(n^2) since it is necessary to touch every single
+	 * element of the list. However, the space complexity is reduced to O(1)
+	 * since we are able to do make changes in place.
+	 * 
+	 */
+	public void Rotate90InPlace(int[][] matrix) {
+		HashSet<String> visited = new HashSet<String>();
+		int newrow = 0, newcol = 0, val = 0, tmpval = 0, tmprow = 0;
+		int width = matrix[0].length;
+		String pair = "";
+		
+		for (int row = 0; row < matrix.length; row++) {
+			for (int col = 0; col < matrix[0].length; col++) {
+				newrow = col;
+				newcol = width - 1 - row;
+				tmpval = matrix[row][col];
+				
+				pair = String.valueOf(newrow)+newcol;
+				
+				while (!visited.contains(pair)) {
+					val = tmpval;
+					visited.add(pair);
+					tmpval = matrix[newrow][newcol];
+					matrix[newrow][newcol] = val;
+					
+					tmprow = newrow;
+					newrow = newcol;
+					newcol = width - 1 - tmprow;
+					
+					pair = String.valueOf(newrow) + newcol;
+				}
+			}
+		}
+	}
+
 }

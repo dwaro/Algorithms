@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -66,6 +67,38 @@ class ArraysAndStringsTest {
 		assertEquals("aa", aryStr.Compress("aa"));
 		assertEquals("j2a4k5e1", aryStr.Compress("jjaaaakkkkke"));
 		assertEquals("A2a2D3r2E2", aryStr.Compress("AAaaDDDrrEE"));
+	}
+	
+	@Test
+	void testRotate90() {
+		int[][] matrix = { {0,0,0,1} , {0,1,1,1}, {0,1,1,1} , {0,1,1,1} };
+		int[][] newMatrix = { {0,0,0,0} , {1,1,1,0}, {1,1,1,0} , {1,1,1,1} };
+		int[][] matrix1 = { {2,2,1,1} , {0,1,4,1}, {0,1,1,4} , {0,1,3,1} };
+		int[][] newMatrix1 = { {0,0,0,2} , {1,1,1,2}, {3,1,4,1} , {1,4,1,1} };
+		int[][] matrix2 = { {1,2,3} , {4,5,6}, {7,8,9} };
+		int[][] newMatrix2 = { {7,4,1} , {8,5,2}, {9,6,3} };
+		
+		assertEquals(true, Arrays.deepEquals(newMatrix, aryStr.Rotate90(matrix)));
+		assertEquals(true, Arrays.deepEquals(newMatrix1, aryStr.Rotate90(matrix1)));
+		assertEquals(true, Arrays.deepEquals(newMatrix2, aryStr.Rotate90(matrix2)));
+	}
+	
+	@Test
+	void testRotate90InPlace() {
+		int[][] matrix = { {0,0,0,1} , {0,1,1,1}, {0,1,1,1} , {0,1,1,1} };
+		int[][] newMatrix = { {0,0,0,0} , {1,1,1,0}, {1,1,1,0} , {1,1,1,1} };
+		int[][] matrix1 = { {2,2,1,1} , {0,1,4,1}, {0,1,1,4} , {0,1,3,1} };
+		int[][] newMatrix1 = { {0,0,0,2} , {1,1,1,2}, {3,1,4,1} , {1,4,1,1} };
+		int[][] matrix2 = { {1,2,3} , {4,5,6}, {7,8,9} };
+		int[][] newMatrix2 = { {7,4,1} , {8,5,2}, {9,6,3} };
+		
+		aryStr.Rotate90InPlace(matrix);
+		aryStr.Rotate90InPlace(matrix1);
+		aryStr.Rotate90InPlace(matrix2);
+		
+		assertEquals(true, Arrays.deepEquals(newMatrix, matrix));
+		assertEquals(true, Arrays.deepEquals(newMatrix1, matrix1));
+		assertEquals(true, Arrays.deepEquals(newMatrix2, matrix2));
 	}
 
 }
