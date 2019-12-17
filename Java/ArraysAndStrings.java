@@ -309,5 +309,51 @@ public class ArraysAndStrings {
 			}
 		}
 	}
+	
+	/*
+	 * This algorithm looks through a 2D array, and if an 0 elements
+	 * are found, it replaces the entire row and column with 0s.
+	 * 
+	 * O(r*c) because we cannot set the rows and columns to 0s right
+	 * away, but there may be other important zeros in the row or column
+	 * that we need to visit first before knowing all of the rows and
+	 * columns to set to zeros at the end.
+	 * 
+	 * Could use O(1) space by setting first row values to zeros and
+	 * first column values to zeros as indicators that the row or column
+	 * will be changed to 0.
+	 * 
+	 */
+	public void ZeroMatrix(int[][] matrix) {
+		ArrayList<int[]> setToZero = new ArrayList<int[]>();
+		int height = matrix.length;
+		int width = matrix[0].length;
+		
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				if (matrix[row][col] == 0) {
+					int[] zero = {row, col};
+					setToZero.add(zero);
+				}
+			}
+		}
+		ConvertZeros(matrix, setToZero, width, height);
+	}
+	
+	private void ConvertZeros(int[][] matrix, ArrayList<int[]> setToZero, int width, int height) {
+		int row = 0, col = 0;
+		int[] zeros = new int[width];
+		
+		for (int[] zero: setToZero) {
+			row = zero[0];
+			col = zero[1];
+			matrix[row] = zeros;
+			for (int i = 0; i < height; i++) {
+				if (i != row) {
+					matrix[i][col] = 0;
+				}
+			}
+		}
+	}
 
 }

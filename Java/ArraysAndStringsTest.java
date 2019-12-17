@@ -100,5 +100,23 @@ class ArraysAndStringsTest {
 		assertEquals(true, Arrays.deepEquals(newMatrix1, matrix1));
 		assertEquals(true, Arrays.deepEquals(newMatrix2, matrix2));
 	}
+	
+	@Test
+	void testZeroMatrix() {
+		int[][] matrix = { {1,1,1,1} , {1,1,0,1}, {1,1,1,1} , {1,1,1,1} };
+		int[][] newMatrix = { {1,1,0,1} , {0,0,0,0}, {1,1,0,1} , {1,1,0,1} };
+		int[][] matrix1 = { {0,1,0} , {1,0,1}, {0,1,0} };
+		int[][] newMatrix1 = { {0,0,0} , {0,0,0}, {0,0,0} };
+		int[][] matrix2 = { {1,1,1,1} , {1,1,1,1}, {1,1,1,1} , {1,1,1,1} };
+		int[][] newMatrix2 = { {1,1,1,1} , {1,1,1,1}, {1,1,1,1} , {1,1,1,1} };
+		
+		aryStr.ZeroMatrix(matrix);
+		aryStr.ZeroMatrix(matrix1);
+		aryStr.ZeroMatrix(matrix2);
+		
+		assertEquals(true, Arrays.deepEquals(newMatrix, matrix));
+		assertEquals(true, Arrays.deepEquals(newMatrix1, matrix1));
+		assertEquals(true, Arrays.deepEquals(newMatrix2, matrix2));
+	}
 
 }
