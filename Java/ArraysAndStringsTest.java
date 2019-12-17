@@ -8,65 +8,65 @@ class ArraysAndStringsTest {
 
 	@Test
 	void testIsUnique() {
-		assertTrue(aryStr.IsUnique("abcdefghijklmnopqrstuvwxyz"));
-		assertFalse(aryStr.IsUnique("abcdeffedcba"));
-		if (aryStr.IsUnique("abcdeffedcba") != true && aryStr.IsUnique("abcdeffedcba") != false) {
+		assertTrue(aryStr.isUnique("abcdefghijklmnopqrstuvwxyz"));
+		assertFalse(aryStr.isUnique("abcdeffedcba"));
+		if (aryStr.isUnique("abcdeffedcba") != true && aryStr.isUnique("abcdeffedcba") != false) {
 			fail("ArraysAndStrings.IsUnique() must return a boolean value.");
 		}
 	}
 
 	@Test
 	void testCheckPermutation() {
-		assertTrue(aryStr.CheckPermutation("Hello", "elloH"));
-		assertTrue(aryStr.CheckPermutation("stressed", "desserts"));
-		assertFalse(aryStr.CheckPermutation("Hello", "hello"));
-		assertFalse(aryStr.CheckPermutation("cats and dogs", "chocolate pillows"));
-		if (aryStr.CheckPermutation("Hello", "elloH") != true && aryStr.CheckPermutation("Hello", "elloH") != false) {
+		assertTrue(aryStr.checkPermutation("Hello", "elloH"));
+		assertTrue(aryStr.checkPermutation("stressed", "desserts"));
+		assertFalse(aryStr.checkPermutation("Hello", "hello"));
+		assertFalse(aryStr.checkPermutation("cats and dogs", "chocolate pillows"));
+		if (aryStr.checkPermutation("Hello", "elloH") != true && aryStr.checkPermutation("Hello", "elloH") != false) {
 			fail("ArraysAndStrings.CheckPermutation() must return a boolean value.");
 		}
 	}
 	
 	@Test
 	void testURLify() {
-		assertEquals("Hello,%20my%20name%20is%20David", aryStr.URLify("Hello, my name is David        ", 23));
-		assertEquals("Mr%20John%20Smith", aryStr.URLify("Mr John Smith    ", 13));
+		assertEquals("Hello,%20my%20name%20is%20David", aryStr.urLify("Hello, my name is David        ", 23));
+		assertEquals("Mr%20John%20Smith", aryStr.urLify("Mr John Smith    ", 13));
 	}
 	
 	@Test
 	void testURLify2() {
-		assertEquals("Hello,%20my%20name%20is%20David", aryStr.URLify("Hello, my name is David        ", 23));
-		assertEquals("Mr%20John%20Smith", aryStr.URLify("Mr John Smith    ", 13));
+		assertEquals("Hello,%20my%20name%20is%20David", aryStr.urLify("Hello, my name is David        ", 23));
+		assertEquals("Mr%20John%20Smith", aryStr.urLify("Mr John Smith    ", 13));
 	}
 	
 	@Test
 	void testPalindromePermutation() {
-		assertTrue(aryStr.PalindromePermutation("taco cat"));
-		assertTrue(aryStr.PalindromePermutation("tcac ota"));
-		assertFalse(aryStr.PalindromePermutation("tca ota"));
+		assertTrue(aryStr.palindromePermutation("taco cat"));
+		assertTrue(aryStr.palindromePermutation("tcac ota"));
+		assertFalse(aryStr.palindromePermutation("tca ota"));
 	}
 	
 	@Test
 	void testOneAway() {
-		assertTrue(aryStr.OneAway("pale", "ale"));
-		assertTrue(aryStr.OneAway("pales", "pale"));
-		assertTrue(aryStr.OneAway("pale", "bale"));
-		assertTrue(aryStr.OneAway("aloha", "loha"));
-		assertTrue(aryStr.OneAway("loha", "lohaa"));
-		assertTrue(aryStr.OneAway("Hello", "Hello"));
-		assertFalse(aryStr.OneAway("pale", "bake"));
-		assertFalse(aryStr.OneAway("snake", "croc"));
-		assertFalse(aryStr.OneAway("lion", "lioness"));
-		assertFalse(aryStr.OneAway("Hello world", "world"));
+		assertTrue(aryStr.oneAway("pale", "ale"));
+		assertTrue(aryStr.oneAway("pales", "pale"));
+		assertTrue(aryStr.oneAway("pale", "bale"));
+		assertTrue(aryStr.oneAway("aloha", "loha"));
+		assertTrue(aryStr.oneAway("loha", "lohaa"));
+		assertTrue(aryStr.oneAway("Hello", "Hello"));
+		assertFalse(aryStr.oneAway("pale", "bake"));
+		assertFalse(aryStr.oneAway("snake", "croc"));
+		assertFalse(aryStr.oneAway("lion", "lioness"));
+		assertFalse(aryStr.oneAway("Hello world", "world"));
 	}
 	
 	@Test
 	void testCompress() {
-		assertEquals("a2b1c5a3", aryStr.Compress("aabcccccaaa"));
-		assertEquals("a", aryStr.Compress("a"));
-		assertEquals("abc", aryStr.Compress("abc"));
-		assertEquals("aa", aryStr.Compress("aa"));
-		assertEquals("j2a4k5e1", aryStr.Compress("jjaaaakkkkke"));
-		assertEquals("A2a2D3r2E2", aryStr.Compress("AAaaDDDrrEE"));
+		assertEquals("a2b1c5a3", aryStr.compress("aabcccccaaa"));
+		assertEquals("a", aryStr.compress("a"));
+		assertEquals("abc", aryStr.compress("abc"));
+		assertEquals("aa", aryStr.compress("aa"));
+		assertEquals("j2a4k5e1", aryStr.compress("jjaaaakkkkke"));
+		assertEquals("A2a2D3r2E2", aryStr.compress("AAaaDDDrrEE"));
 	}
 	
 	@Test
@@ -78,9 +78,9 @@ class ArraysAndStringsTest {
 		int[][] matrix2 = { {1,2,3} , {4,5,6}, {7,8,9} };
 		int[][] newMatrix2 = { {7,4,1} , {8,5,2}, {9,6,3} };
 		
-		assertEquals(true, Arrays.deepEquals(newMatrix, aryStr.Rotate90(matrix)));
-		assertEquals(true, Arrays.deepEquals(newMatrix1, aryStr.Rotate90(matrix1)));
-		assertEquals(true, Arrays.deepEquals(newMatrix2, aryStr.Rotate90(matrix2)));
+		assertEquals(true, Arrays.deepEquals(newMatrix, aryStr.rotate90(matrix)));
+		assertEquals(true, Arrays.deepEquals(newMatrix1, aryStr.rotate90(matrix1)));
+		assertEquals(true, Arrays.deepEquals(newMatrix2, aryStr.rotate90(matrix2)));
 	}
 	
 	@Test
@@ -92,9 +92,9 @@ class ArraysAndStringsTest {
 		int[][] matrix2 = { {1,2,3} , {4,5,6}, {7,8,9} };
 		int[][] newMatrix2 = { {7,4,1} , {8,5,2}, {9,6,3} };
 		
-		aryStr.Rotate90InPlace(matrix);
-		aryStr.Rotate90InPlace(matrix1);
-		aryStr.Rotate90InPlace(matrix2);
+		aryStr.rotate90InPlace(matrix);
+		aryStr.rotate90InPlace(matrix1);
+		aryStr.rotate90InPlace(matrix2);
 		
 		assertEquals(true, Arrays.deepEquals(newMatrix, matrix));
 		assertEquals(true, Arrays.deepEquals(newMatrix1, matrix1));
@@ -110,13 +110,22 @@ class ArraysAndStringsTest {
 		int[][] matrix2 = { {1,1,1,1} , {1,1,1,1}, {1,1,1,1} , {1,1,1,1} };
 		int[][] newMatrix2 = { {1,1,1,1} , {1,1,1,1}, {1,1,1,1} , {1,1,1,1} };
 		
-		aryStr.ZeroMatrix(matrix);
-		aryStr.ZeroMatrix(matrix1);
-		aryStr.ZeroMatrix(matrix2);
+		aryStr.zeroMatrix(matrix);
+		aryStr.zeroMatrix(matrix1);
+		aryStr.zeroMatrix(matrix2);
 		
 		assertEquals(true, Arrays.deepEquals(newMatrix, matrix));
 		assertEquals(true, Arrays.deepEquals(newMatrix1, matrix1));
 		assertEquals(true, Arrays.deepEquals(newMatrix2, matrix2));
+	}
+	
+	@Test
+	void testIsStringRotation() {
+		assertTrue(aryStr.isStringRotation("zebra", "razeb"));
+		assertTrue(aryStr.isStringRotation("Hello world", "worldHello "));
+		assertTrue(aryStr.isStringRotation("a b c d", "a b c d"));
+		assertTrue(aryStr.isStringRotation(" a b c d", "c d a b "));
+		assertFalse(aryStr.isStringRotation("Rodgers", "sregdoR"));
 	}
 
 }

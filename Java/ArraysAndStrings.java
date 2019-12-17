@@ -26,7 +26,7 @@ public class ArraysAndStrings {
 	 * Space complexity = O(n)
 	 *
 	 */
-	public boolean IsUnique(String str) {
+	public boolean isUnique(String str) {
 		if (str.length() > 128) return false;
 		
 		HashSet<Character> tracker = new HashSet<Character>();
@@ -57,7 +57,7 @@ public class ArraysAndStrings {
 	 * equal to each other.
 	 * 
 	 */
-	public boolean CheckPermutation(String str1, String str2) {
+	public boolean checkPermutation(String str1, String str2) {
 		if (str1.length() != str2.length()) return false;
 		
 		HashMap<Character, Integer> map1 = new HashMap<Character, Integer>();
@@ -95,7 +95,7 @@ public class ArraysAndStrings {
 	 * 
 	 * 
 	 */
-	public String URLify(String str, int length) {
+	public String urLify(String str, int length) {
 		char[] letters = str.toCharArray();
 		
 		for (int i = 0; i < letters.length; i++) {
@@ -124,7 +124,7 @@ public class ArraysAndStrings {
 	 * space. 
 	 * 
 	 */
-	public String URLify2(String str, int trueLength) {
+	public String urLify2(String str, int trueLength) {
 		char[] letters = str.toCharArray();
 		char[] result = new char[letters.length];
 		
@@ -152,7 +152,7 @@ public class ArraysAndStrings {
 	 * less characters with an odd count).
 	 * 
 	 */
-	public boolean PalindromePermutation(String str) {
+	public boolean palindromePermutation(String str) {
 		HashMap<Character, Integer> lettermap = new HashMap<Character, Integer>();
 		
 		int oddCount = 0, frequency = 0;
@@ -188,18 +188,18 @@ public class ArraysAndStrings {
 	 * - If difference between string lengths > 1, then the runtime is O(1).
 	 * 
 	 */
-	public boolean OneAway(String str1, String str2) {
+	public boolean oneAway(String str1, String str2) {
 		if (Math.abs(str1.length() - str2.length()) > 1) return false;
 		if (str1.equals(str2)) return true;
 		
 		if (str1.length() < str2.length()) {
-			CompareStrings(str2, str1);
+			compareStrings(str2, str1);
 		}
 		
-		return CompareStrings(str1, str2);
+		return compareStrings(str1, str2);
 	}
 	
-	private boolean CompareStrings(String s1, String s2) {
+	private boolean compareStrings(String s1, String s2) {
 		int pos = 0, diffs = 0;
 		for (int i = 0; i < s1.length(); i++) {
 			if (pos < s2.length() && s1.charAt(i) != s2.charAt(pos)) {
@@ -220,7 +220,7 @@ public class ArraysAndStrings {
 	 * Time Complexity: O(n);
 	 * 
 	 */
-	public String Compress(String s1) {
+	public String compress(String s1) {
 		int s1Length = s1.length();
 		if (s1Length == 1) return s1;
 		
@@ -256,7 +256,7 @@ public class ArraysAndStrings {
 	 * achieve O(1) space.
 	 * 
 	 */
-	public int[][] Rotate90(int[][] matrix) {
+	public int[][] rotate90(int[][] matrix) {
 		int[][] newmatrix = new int[matrix.length][matrix[0].length];
 		int newrow = 0, newcol = 0, val = 0;
 		int width = matrix[0].length;
@@ -280,7 +280,7 @@ public class ArraysAndStrings {
 	 * since we are able to do make changes in place.
 	 * 
 	 */
-	public void Rotate90InPlace(int[][] matrix) {
+	public void rotate90InPlace(int[][] matrix) {
 		HashSet<String> visited = new HashSet<String>();
 		int newrow = 0, newcol = 0, val = 0, tmpval = 0, tmprow = 0;
 		int width = matrix[0].length;
@@ -324,7 +324,7 @@ public class ArraysAndStrings {
 	 * will be changed to 0.
 	 * 
 	 */
-	public void ZeroMatrix(int[][] matrix) {
+	public void zeroMatrix(int[][] matrix) {
 		ArrayList<int[]> setToZero = new ArrayList<int[]>();
 		int height = matrix.length;
 		int width = matrix[0].length;
@@ -337,10 +337,10 @@ public class ArraysAndStrings {
 				}
 			}
 		}
-		ConvertZeros(matrix, setToZero, width, height);
+		convertZeros(matrix, setToZero, width, height);
 	}
 	
-	private void ConvertZeros(int[][] matrix, ArrayList<int[]> setToZero, int width, int height) {
+	private void convertZeros(int[][] matrix, ArrayList<int[]> setToZero, int width, int height) {
 		int row = 0, col = 0;
 		int[] zeros = new int[width];
 		
@@ -354,6 +354,24 @@ public class ArraysAndStrings {
 				}
 			}
 		}
+	}
+	
+	/*
+	 * Method checks to see if str2 is a rotation of str1. I.e. if str2 is a shift
+	 * of str1 at all. With this, we know the strings must be the same length,
+	 * and we know that if str2 is a substring of str1, then it must be contained within
+	 * one concatenation (2 x) str1.
+	 * 
+	 * Time complexity is O(n) per the String.contains() search.
+	 * 
+	 */
+	public boolean isStringRotation(String str1, String str2) {
+		if (str1.length() != str2.length()) return false;
+		if (str1.length() == 0) return true;
+		
+		String str1str1 = str1+str1;
+		
+		return str1str1.contains(str2);
 	}
 
 }
