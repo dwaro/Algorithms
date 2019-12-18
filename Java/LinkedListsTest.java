@@ -72,10 +72,44 @@ class LinkedListsTest {
 		assertNull(result4);
 	}
 	
+	@Test
+	void testDeleteNode() {
+		SinglyNode n1 = new SinglyNode(1);
+		SinglyNode n2 = new SinglyNode(2);
+		SinglyNode n3 = new SinglyNode(3);
+		SinglyNode n4 = new SinglyNode(4);
+		SinglyNode n5 = new SinglyNode(5);
+		n1.setNext(n2);
+		n2.setNext(n3);
+		n3.setNext(n4);
+		n4.setNext(n5);
+		
+		ls.deleteNode(n2);
+		ArrayList<Integer> list1 = buildIntList(n1);
+		ArrayList<Integer> newlist1 = new ArrayList<Integer>();
+		
+		newlist1.add(n1.getVal());
+		newlist1.add(n3.getVal());
+		newlist1.add(n4.getVal());
+		newlist1.add(n5.getVal());
+		
+		assertTrue(newlist1.equals(list1));
+		
+	}
+	
 	private ArrayList<SinglyNode> buildList(SinglyNode head) {
 		ArrayList<SinglyNode> result = new ArrayList<SinglyNode>();
 		while (head != null) {
 			result.add(head);
+			head = head.getNext();
+		}
+		return result;
+	}
+	
+	private ArrayList<Integer> buildIntList(SinglyNode head) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		while (head != null) {
+			result.add(head.getVal());
 			head = head.getNext();
 		}
 		return result;

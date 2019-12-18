@@ -23,7 +23,7 @@ public class SinglyNode {
 		return this.next;
 	}
 	
-	public void getVal(int val) {
+	public void setVal(int val) {
 		this.val = val;
 	}
 	

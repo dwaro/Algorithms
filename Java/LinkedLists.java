@@ -107,4 +107,23 @@ public class LinkedLists {
 		return listMap.get(size - k);
 	}
 	
+	/*
+	 * This algorithm deletes the input node. The node can be in the
+	 * middle of the list.
+	 * 
+	 * Time complexity: O(1)
+	 * 
+	 */
+	public void deleteNode(SinglyNode node) {
+		if (node != null) {
+			if (node.getNext() == null) {
+				node = null;
+			} else {
+				SinglyNode nextNode = node.getNext();
+				node.setVal(nextNode.getVal());
+				node.setNext(nextNode.getNext());
+			}
+		}
+	}
+	
 }
