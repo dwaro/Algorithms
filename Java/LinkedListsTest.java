@@ -32,6 +32,24 @@ class LinkedListsTest {
 		
 	}
 	
+	@Test
+	void testFindIthElement() {
+		SinglyNode n1 = new SinglyNode(1);
+		SinglyNode n2 = new SinglyNode(2);
+		SinglyNode n3 = new SinglyNode(3);
+		SinglyNode n4 = new SinglyNode(4);
+		SinglyNode n5 = new SinglyNode(5);
+		n1.setNext(n2);
+		n2.setNext(n3);
+		n3.setNext(n4);
+		n4.setNext(n5);
+		
+		SinglyNode result1 = ls.findIthElement(n1, 2);
+		SinglyNode result2 = ls.findIthElement(n1, 5);
+		assertTrue(result1.equals(n3));
+		assertNull(result2);
+	}
+	
 	private ArrayList<SinglyNode> buildList(SinglyNode head) {
 		ArrayList<SinglyNode> result = new ArrayList<SinglyNode>();
 		while (head != null) {
