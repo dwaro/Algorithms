@@ -78,6 +78,12 @@ public class LinkedLists {
 	 * reality, with the expense of O(n) space, where a second iteration would
 	 * require more time, but would only require constant space.
 	 * 
+	 * Two other implementations: 1. recursion to first recurse the entire list, then
+	 * we return back a count moving backwards and when k == count, we can return
+	 * the node. 2. use two pointers and offset them k spaces, start both at head,
+	 * and begin moving second pointer once the first pointer is k spaces ahead. When
+	 * the first pointer hits the end, return the second pointer.
+	 * 
 	 * Time complexity: O(n)
 	 * Space complexity: O(n), can improve by using second O(n) iteration, but
 	 * then we forego a speedier algorithm.
