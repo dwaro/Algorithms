@@ -126,4 +126,54 @@ public class LinkedLists {
 		}
 	}
 	
+	/*
+	 * This method partitions a linked list such that all nodes with values
+	 * less than the target appear before any nodes that are greater than
+	 * or equal to the target. The target does not need to appear in between
+	 * the "two" partitions.
+	 * 
+	 * O(n) 
+	 * 
+	 */
+	public SinglyNode partitionList(SinglyNode head, int target) {
+		boolean foundGreater = false, foundLesser = false;
+		SinglyNode bigHead = new SinglyNode();
+		SinglyNode bigTail = new SinglyNode();
+		SinglyNode lilHead = null, lilTail = null;
+		SinglyNode current = head;
+		
+		while (current != null) {
+			SinglyNode next = new SinglyNode(current.getVal());
+			next.setNext(null);
+			if (next.getVal() >= target) {
+				if (foundGreater) {
+					bigTail.setNext(next);
+					bigTail = next;
+				} else {
+					foundGreater = true;
+					bigHead = next;
+					bigTail = next;
+				}
+			} else {
+				if (foundLesser) {
+					lilTail.setNext(next);
+					lilTail = next;
+				} else {
+					foundLesser = true;
+					lilHead = next;
+					lilTail = next;
+				}
+			}
+			current = current.getNext();
+		}
+		
+		if (foundLesser && foundGreater) {
+			lilTail.setNext(bigHead);
+		} else if (foundGreater) {
+			return bigHead;
+		}
+		
+		return lilHead;
+	}
+	
 }

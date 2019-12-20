@@ -97,6 +97,52 @@ class LinkedListsTest {
 		
 	}
 	
+	@Test
+	void testPartitionList() {
+		SinglyNode n1 = new SinglyNode(1);
+		SinglyNode n2 = new SinglyNode(10);
+		SinglyNode n3 = new SinglyNode(5);
+		SinglyNode n4 = new SinglyNode(4);
+		SinglyNode n5 = new SinglyNode(8);
+		n1.setNext(n2);
+		n2.setNext(n3);
+		n3.setNext(n4);
+		n4.setNext(n5);
+		
+		ArrayList<Integer> test1 = buildIntList(ls.partitionList(n1, 5));
+		ArrayList<Integer> results = new ArrayList<Integer>();
+		results.add(1);
+		results.add(4);
+		results.add(10);
+		results.add(5);
+		results.add(8);
+		
+		assertEquals(results, test1);
+		
+		ArrayList<Integer> test2 = buildIntList(ls.partitionList(n1, 7));
+		results.clear();
+		results.add(1);
+		results.add(5);
+		results.add(4);
+		results.add(10);
+		results.add(8);
+		
+		assertEquals(results, test2);
+		
+		ArrayList<Integer> test3 = buildIntList(ls.partitionList(n1, 0));
+		results.clear();
+		results.add(1);
+		results.add(10);
+		results.add(5);
+		results.add(4);
+		results.add(8);
+		
+		assertEquals(results, test3);
+		
+	}
+	
+	// -------------------- Helper Methods -------------------------
+	
 	private ArrayList<SinglyNode> buildList(SinglyNode head) {
 		ArrayList<SinglyNode> result = new ArrayList<SinglyNode>();
 		while (head != null) {
