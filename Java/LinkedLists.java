@@ -132,13 +132,16 @@ public class LinkedLists {
 	 * or equal to the target. The target does not need to appear in between
 	 * the "two" partitions.
 	 * 
-	 * O(n) 
+	 * Time complexity: O(n) because we have to iterate over the entire linked
+	 * list.
+	 * 
+	 * A similar approach can be done by only using one linkedlist instead of two.
+	 * If an element is greater we can add it to the end, and if it is smaller, we
+	 * can insert it at the head.
 	 * 
 	 */
 	public SinglyNode partitionList(SinglyNode head, int target) {
-		boolean foundGreater = false, foundLesser = false;
-		SinglyNode bigHead = new SinglyNode();
-		SinglyNode bigTail = new SinglyNode();
+		SinglyNode bigHead = null, bigTail = null;
 		SinglyNode lilHead = null, lilTail = null;
 		SinglyNode current = head;
 		
@@ -146,20 +149,18 @@ public class LinkedLists {
 			SinglyNode next = new SinglyNode(current.getVal());
 			next.setNext(null);
 			if (next.getVal() >= target) {
-				if (foundGreater) {
+				if (bigHead != null) {
 					bigTail.setNext(next);
 					bigTail = next;
 				} else {
-					foundGreater = true;
 					bigHead = next;
 					bigTail = next;
 				}
 			} else {
-				if (foundLesser) {
+				if (lilHead != null) {
 					lilTail.setNext(next);
 					lilTail = next;
 				} else {
-					foundLesser = true;
 					lilHead = next;
 					lilTail = next;
 				}
@@ -167,9 +168,9 @@ public class LinkedLists {
 			current = current.getNext();
 		}
 		
-		if (foundLesser && foundGreater) {
+		if (lilHead != null && bigHead != null) {
 			lilTail.setNext(bigHead);
-		} else if (foundGreater) {
+		} else if (bigHead != null) {
 			return bigHead;
 		}
 		
