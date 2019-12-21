@@ -177,4 +177,54 @@ public class LinkedLists {
 		return lilHead;
 	}
 	
+	/*
+	 * This method takes in two linked lists and returns the sum of
+	 * the linked lists. Each linked list represents a number in
+	 * reverse order, for example, list 6 -> 5 -> 2 represents 256.
+	 * add this linked list with 4 -> 9 we get 256 + 49 = 5 -> 0 -> 3.
+	 * 
+	 * The resultant list should also be in reverse order.
+	 * 
+	 * Time Complexity: O(N + M + R) where N is the length of l1, M is
+	 * the length of l2, and R is the number of digits in the summed value
+	 * of the lists.
+	 * 
+	 * 
+	 */
+	public SinglyNode sumLists(SinglyNode l1, SinglyNode l2) {
+		SinglyNode result = null, tail = null;
+		int num1 = buildNumber(l1);
+		int num2 = buildNumber(l2);
+		
+		String newNum = String.valueOf(num1 + num2);
+		char[] nums = newNum.toCharArray();
+		
+		for (int i = nums.length-1; i >=0; i--) {
+			SinglyNode next = new SinglyNode(Character.getNumericValue(nums[i]));
+			if (result == null) {
+				result = next;
+				tail = next;
+			} else {
+				tail.setNext(next);
+				tail = next;
+			}
+		}
+		
+		return result;
+	}
+	
+	private int buildNumber(SinglyNode node) {
+		StringBuilder newNum = new StringBuilder();
+		
+		while (node != null) {
+			newNum.append(node.getVal());
+			node = node.getNext();
+		}
+		
+		newNum.reverse();
+		int result = Integer.valueOf(newNum.toString());
+		
+		return result;
+	}
+	
 }

@@ -141,6 +141,52 @@ class LinkedListsTest {
 		
 	}
 	
+	@Test
+	void testSumLists() {
+		ArrayList<Integer> test = new ArrayList<Integer>();
+		
+		SinglyNode n1 = new SinglyNode(4);
+		SinglyNode n2 = new SinglyNode(5);
+		SinglyNode n3 = new SinglyNode(1);
+		SinglyNode n4 = new SinglyNode(6);
+		n1.setNext(n2);
+		n3.setNext(n4);
+		ArrayList<Integer> result1 = buildIntList(ls.sumLists(n1, n3));
+		
+		test.add(5);
+		test.add(1);
+		test.add(1);
+		
+		assertEquals(test, result1);
+		test.clear();
+		
+		SinglyNode a = new SinglyNode(1);
+		SinglyNode b = new SinglyNode(2);
+		SinglyNode c = new SinglyNode(3);
+		SinglyNode d = new SinglyNode(4);
+		SinglyNode e = new SinglyNode(5);
+		SinglyNode f = new SinglyNode(6);
+		SinglyNode g = new SinglyNode(7);
+		SinglyNode h = new SinglyNode(8);
+		a.setNext(b);
+		b.setNext(c);
+		c.setNext(d);
+		d.setNext(e);
+		f.setNext(g);
+		g.setNext(h);
+		ArrayList<Integer> result2 = buildIntList(ls.sumLists(a, f));
+		
+		test.add(7);
+		test.add(9);
+		test.add(1);
+		test.add(5);
+		test.add(5);
+		
+		assertEquals(test, result2);
+		test.clear();
+		
+	}
+	
 	// -------------------- Helper Methods -------------------------
 	
 	private ArrayList<SinglyNode> buildList(SinglyNode head) {
