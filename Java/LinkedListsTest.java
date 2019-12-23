@@ -187,6 +187,44 @@ class LinkedListsTest {
 		
 	}
 	
+	@Test
+	void testIsPalindrome() {
+		SinglyNode a = new SinglyNode(1);
+		SinglyNode b = new SinglyNode(2);
+		SinglyNode c = new SinglyNode(1);
+		a.setNext(b);
+		b.setNext(c);
+		
+		assertTrue(ls.isPalindrome(a));
+		
+		SinglyNode d = new SinglyNode(2);
+		SinglyNode e = new SinglyNode(2);
+		SinglyNode f = new SinglyNode(1);
+		d.setNext(e);
+		e.setNext(f);
+		
+		assertFalse(ls.isPalindrome(d));
+		
+		SinglyNode g = new SinglyNode(5);
+		SinglyNode h = new SinglyNode(4);
+		SinglyNode i = new SinglyNode(4);
+		SinglyNode j = new SinglyNode(3);
+		SinglyNode k = new SinglyNode(3);
+		SinglyNode l = new SinglyNode(4);
+		SinglyNode m = new SinglyNode(4);
+		SinglyNode n = new SinglyNode(5);
+		g.setNext(h);
+		h.setNext(i);
+		i.setNext(j);
+		j.setNext(k);
+		k.setNext(l);
+		l.setNext(m);
+		m.setNext(n);
+		
+		assertTrue(ls.isPalindrome(g));
+		
+	}
+	
 	// -------------------- Helper Methods -------------------------
 	
 	private ArrayList<SinglyNode> buildList(SinglyNode head) {

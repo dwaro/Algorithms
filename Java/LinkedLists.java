@@ -227,4 +227,36 @@ public class LinkedLists {
 		return result;
 	}
 	
+	/*
+	 * This method checks if the given linked list is a palindrome,
+	 * that is, it's the same forward as it is backwards.
+	 * e.g. 1 -> 2 -> 3 -> 2 -> 1
+	 * 
+	 * Time Complexity: O(n) --> We have to iterate through the list
+	 * once to get all the values, then we begin iterate through the
+	 * list to check if it is a palindrome, with worse case scenario,
+	 * we check half the list.
+	 * 
+	 */
+	public boolean isPalindrome(SinglyNode listNode) {
+		if (listNode == null) return false;
+		
+		List<Integer> values = new ArrayList<Integer>();
+		
+		while (listNode != null) {
+			values.add(listNode.getVal());
+			listNode = listNode.getNext();
+		}
+		
+		int length = values.size() / 2;
+		
+		for (int i = values.size() - 1, j = 0; i >= length; i--, j++) {
+			if (values.get(i) != values.get(j)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 }
