@@ -277,6 +277,8 @@ public class LinkedLists {
 	 * Time Complexity: This approach is O(n + m) where n is the length of
 	 * l1 and m is the length of l2.
 	 * 
+	 * Space Complexity: O(n)
+	 * 
 	 */
 	public SinglyNode intersection(SinglyNode l1, SinglyNode l2) {
 		HashSet<SinglyNode> l1Nodes = new HashSet<SinglyNode>();
@@ -287,7 +289,7 @@ public class LinkedLists {
 			l1 = l1.getNext();
 		}
 		
-		// O(m)
+		// O(m), O(1) for 'contains' call
 		while (l2 != null) {
 			if (l1Nodes.contains(l2)) {
 				return l2;
@@ -295,6 +297,29 @@ public class LinkedLists {
 				return l2.getNext();
 			}
 			l2 = l2.getNext();
+		}
+		
+		return null;
+	}
+	
+	/*
+	 * This method checks to see if there is a loop in the linked list,
+	 * and if there is, it returns the first node that it cycles on.
+	 * 
+	 * e.g. E -> R -> G -> Y -> Q -> Y .... returns Y
+	 * 
+	 * 
+	 */
+	public SinglyNode loopDetection(SinglyNode node) {
+		HashSet<SinglyNode> uniques = new HashSet<SinglyNode>();
+		
+		while (node != null) {
+			if (uniques.contains(node)) {
+				return node;
+			} else {
+				uniques.add(node);
+			}
+			node = node.getNext();
 		}
 		
 		return null;

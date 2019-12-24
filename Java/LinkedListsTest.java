@@ -256,6 +256,48 @@ class LinkedListsTest {
 		k.setNext(l);
 		
 		assertEquals(k, ls.intersection(i, k));
+		
+		SinglyNode m = new SinglyNode(1);
+		SinglyNode n = new SinglyNode(2);
+		SinglyNode o = new SinglyNode(3);
+		m.setNext(n);
+		o.setNext(n);
+		
+		assertEquals(n, ls.intersection(m, o));
+	}
+	
+	@Test
+	void testLoopDetection() {
+		SinglyNode e = new SinglyNode(1);
+		SinglyNode r = new SinglyNode(2);
+		SinglyNode g = new SinglyNode(3);
+		SinglyNode y = new SinglyNode(3);
+		SinglyNode q = new SinglyNode(34);
+		e.setNext(r);
+		r.setNext(g);
+		g.setNext(y);
+		y.setNext(q);
+		q.setNext(y);
+		
+		assertEquals(y, ls.loopDetection(e));
+		
+		SinglyNode a = new SinglyNode(1);
+		SinglyNode b = new SinglyNode(2);
+		SinglyNode c = new SinglyNode(3);
+		a.setNext(b);
+		b.setNext(c);
+		
+		assertNull(ls.loopDetection(a));
+		
+		SinglyNode t = new SinglyNode(1);
+		SinglyNode u = new SinglyNode(2);
+		SinglyNode v = new SinglyNode(3);
+		t.setNext(u);
+		u.setNext(v);
+		v.setNext(t);
+		
+		assertEquals(t, ls.loopDetection(t));
+		
 	}
 	
 	// -------------------- Helper Methods -------------------------
