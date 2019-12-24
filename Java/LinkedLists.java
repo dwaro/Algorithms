@@ -237,6 +237,12 @@ public class LinkedLists {
 	 * list to check if it is a palindrome, with worse case scenario,
 	 * we check half the list.
 	 * 
+	 * Another solution would be to implement two pointers and have
+	 * one move twice as fast as the other, while adding nodes from
+	 * the slow pointer to a stack. Then when the fast one hits null,
+	 * the slow one is at half, and we can move forward checking the
+	 * second half of the list against the stack.
+	 * 
 	 */
 	public boolean isPalindrome(SinglyNode listNode) {
 		if (listNode == null) return false;
@@ -257,6 +263,41 @@ public class LinkedLists {
 		}
 		
 		return true;
+	}
+	
+	
+	/* Brute force approach results with O(n^2) time, while checking all
+	 * of list 1 to see if any nodes intersect with list 2.
+	 * 
+	 * A better approach will be to create a hashset of one of the lists
+	 * and then check the other list for each node if the hashset contains
+	 * that node. If we have the lengths of the lists, we will want to 
+	 * use the shorter list to build the hashset. 
+	 * 
+	 * Time Complexity: This approach is O(n + m) where n is the length of
+	 * l1 and m is the length of l2.
+	 * 
+	 */
+	public SinglyNode intersection(SinglyNode l1, SinglyNode l2) {
+		HashSet<SinglyNode> l1Nodes = new HashSet<SinglyNode>();
+		
+		// O(n)
+		while (l1 != null) {
+			l1Nodes.add(l1);
+			l1 = l1.getNext();
+		}
+		
+		// O(m)
+		while (l2 != null) {
+			if (l1Nodes.contains(l2)) {
+				return l2;
+			} else if (l1Nodes.contains(l2.getNext())) {
+				return l2.getNext();
+			}
+			l2 = l2.getNext();
+		}
+		
+		return null;
 	}
 	
 }

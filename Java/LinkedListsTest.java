@@ -225,6 +225,39 @@ class LinkedListsTest {
 		
 	}
 	
+	@Test
+	void testIntersection() {
+		SinglyNode a = new SinglyNode(1);
+		SinglyNode b = new SinglyNode(2);
+		SinglyNode c = new SinglyNode(3);
+		SinglyNode d = new SinglyNode(3);
+		SinglyNode e = new SinglyNode(34);
+		SinglyNode f = new SinglyNode(8);
+		a.setNext(b);
+		b.setNext(c);
+		d.setNext(e);
+		e.setNext(f);
+		f.setNext(b);
+		
+		assertEquals(b, ls.intersection(a, d));
+		
+		SinglyNode g = new SinglyNode(34);
+		SinglyNode h = new SinglyNode(8);
+		g.setNext(h);
+		
+		assertNull(ls.intersection(a, g));
+		
+		SinglyNode i = new SinglyNode(1);
+		SinglyNode j = new SinglyNode(2);
+		SinglyNode k = new SinglyNode(3);
+		SinglyNode l = new SinglyNode(4);
+		i.setNext(j);
+		j.setNext(k);
+		k.setNext(l);
+		
+		assertEquals(k, ls.intersection(i, k));
+	}
+	
 	// -------------------- Helper Methods -------------------------
 	
 	private ArrayList<SinglyNode> buildList(SinglyNode head) {
