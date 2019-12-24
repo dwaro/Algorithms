@@ -308,6 +308,11 @@ public class LinkedLists {
 	 * 
 	 * e.g. E -> R -> G -> Y -> Q -> Y .... returns Y
 	 * 
+	 * Time Complexity: O(A) where A is 1 + the length of the list before 
+	 * any loops.
+	 * 
+	 * Space Complexity: O(B) where B is the length of the list before the
+	 * loop.
 	 * 
 	 */
 	public SinglyNode loopDetection(SinglyNode node) {
