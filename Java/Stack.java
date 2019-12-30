@@ -1,6 +1,6 @@
 
 public class Stack<T> {
-	private Node top;
+	private Node<T> top;
 	
 	Stack() {
 		top = null;
@@ -11,14 +11,14 @@ public class Stack<T> {
 	}
 	
 	public void push(T data) {
-		Node newTop = new Node(data);
+		Node<T> newTop = new Node(data);
 		newTop.setNext(top);
 		top = newTop;
 	}
 	
 	public Object poll() {
-		Node oldTop = top;
-		Node newTop = top.getNext();
+		Node<T> oldTop = top;
+		Node<T> newTop = top.getNext();
 		top.setNext(null);
 		top = newTop;
 		return oldTop.getData();
@@ -29,6 +29,7 @@ public class Stack<T> {
 	}
 	
 	public Object peek() {
+		if (top == null) return null;
 		return top.getData();
 	}
 }
