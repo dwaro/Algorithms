@@ -7,11 +7,11 @@ public class Stack<T> {
 	}
 	
 	Stack(T data) {
-		top = new Node(data);
+		top = new Node<T>(data);
 	}
 	
 	public void push(T data) {
-		Node<T> newTop = new Node(data);
+		Node<T> newTop = new Node<T>(data);
 		newTop.setNext(top);
 		top = newTop;
 	}
