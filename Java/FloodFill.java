@@ -1,147 +1,86 @@
-import java.util.*;
-public class FloodFill {
-	private int target;
-	private int rep;
-	
-	public void setTarget(int target) {
-		this.target = target;
-	}
-	
-	public void setReplacement(int r) {
-		this.rep = r;
-	}
+import java.util.Queue;
+import java.util.LinkedList;
 
-	public int[][] indexFill(int[][] matrix, int[] index, int replacement) {
-		int[][] result = matrix;
-		target = matrix[index[0]][index[1]];
-		rep = replacement;
-		
-		return bfs(result, index);
-	}
+public class FloodFill {
+	/*
+	 * This class is used to handle matrix operations on a 2D matrix, also to be thought of as
+	 * raster data or images.
+	 * 
+	 */
 	
-	private int[][] bfs(int[][] matrix, int[] index) {
+	void replaceAt(int[] start, int[][] matrix, int replacement) {
+		Queue<int[]> q = new LinkedList<>();
+		q.add(start);
 		
-		Queue<int[]> queue = new LinkedList<int[]>();
-		queue.add(index);
+		int target = matrix[start[0]][start[1]];
 		
-		HashSet<int[]> visited = new HashSet<int[]>();
-		visited.add(index);
-		
-		while (!queue.isEmpty()) {
-			//checkNeighbors(matrix, queue, index, visited)) {
-			int[] top = queue.poll();
-			matrix[top[0]][top[1]] = rep;
-		}
-		
-		return matrix;
-	}
-	
-	private boolean checkNeighbors(int[][] matrix, Queue<int[]> queue, int[] index, HashSet<int[]> visited) {
-		visited.add(index);
-		
-		int count = 0;
-		boolean found = false;
-		int row = index[0], col = index[1];
-		
-		while (count < 8) {
-			switch (count) {
-			case 0:
-				if (row < 1 || col < 1) {
-					count++;
-					break;
-				}
-				if (checkValue(matrix, row - 1, col - 1, visited, queue)) {
-					found = true;
-				};
+		while(!q.isEmpty()) {
+			int count = 0;
+			while (count < 4) {
+				checkNeighbor(q, matrix, target, count);
 				count++;
+			}
+			int[] current = q.remove();
+			matrix[current[0]][current[1]] = replacement;
+		}
+	}
+	
+	void checkNeighbor(Queue<int[]> q, int[][] matrix, int target, int count) {
+		int[] pos = q.peek();
+		int row = pos[0], col = pos[1];
+		int width = matrix[0].length;
+		int height = matrix.length;
+		
+		switch(count) {
+			case 0:
+				if (row >= 1) {
+					if (matrix[row-1][col] == target) {
+						int[] found = {row-1, col};
+						q.add(found);
+					}
+				}
 				break;
 			case 1:
-				if (row < 1) {
-					count++;
-					break;
+				if (col >= 1) {
+					if (matrix[row][col-1] == target) {
+						int[] found = {row, col-1};
+						q.add(found);
+					}
 				}
-				if (checkValue(matrix, row - 1, col - 1, visited, queue)) {
-					found = true;
-				};
-				count++;
 				break;
 			case 2:
-				if (row < 1 || col > matrix[0].length - 2) {
-					count++;
-					break;
+				if (col <= width - 2) {
+					if (matrix[row][col+1] == target) {
+						int[] found = {row, col+1};
+						q.add(found);
+					}
 				}
-				if (checkValue(matrix, row - 1, col + 1, visited, queue)) {
-					found = true;
-				};
-				count++;
 				break;
 			case 3:
-				if (col < 1) {
-					count++;
-					break;
+				if (row <= height - 2) {
+					if (matrix[row+1][col] == target) {
+						int[] found = {row+1, col};
+						q.add(found);
+					}
 				}
-				if (checkValue(matrix, row, col - 1, visited, queue)) {
-					found = true;
-				};
-				count++;
 				break;
-			case 4:
-				if (col > matrix[0].length - 2) {
-					count++;
-					break;
-				}
-				if (checkValue(matrix, row, col + 1, visited, queue)) {
-					found = true;
-				};
-				count++;
-				break;
-			case 5:
-				if (row > matrix.length - 2 || col < 1) {
-					count++;
-					break;
-				}
-				if (checkValue(matrix, row + 1, col - 1, visited, queue)) {
-					found = true;
-				};
-				count++;
-				break;
-			case 6:
-				if (row > matrix.length - 2) {
-					count++;
-					break;
-				}
-				if (checkValue(matrix, row + 1, col, visited, queue)) {
-					found = true;
-				};
-				count++;
-				break;
-			case 7:
-				if (row > matrix.length - 2 || col > matrix[0].length - 1) {
-					count++;
-					break;
-				}
-				if (checkValue(matrix, row + 1, col + 1, visited, queue)) {
-					found = true;
-				};
-				count++;
-				break;
-			default:
-				count++;
-				break;
-			}
+		}
+	}
+
+	void mask(int threshold, int[][] matrix, String side) {
+		int adjust = 1;
+		
+		if (side.equals("bottom")) {
+			adjust = -1;
+			threshold *= -1;
 		}
 		
-		return found;
-	}
-	
-	private boolean checkValue(int[][] matrix, int r, int c, HashSet<int[]> visited, Queue<int[]> queue) {
-		int[] pos = {r, c};
-		if (!visited.contains(pos) && matrix[r][c] == target) {
-			queue.add(pos);
-			visited.add(pos);
-			return true;
+		for (int row = 0; row < matrix.length; row++) {
+			for (int col = 0; col < matrix[0].length; col++) {
+				if (matrix[row][col] * adjust > threshold) {
+					matrix[row][col] = 0;
+				}
+			}
 		}
-		return false;
 	}
-	
 }
