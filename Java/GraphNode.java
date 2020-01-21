@@ -29,4 +29,8 @@ public class GraphNode {
 		this.val = val;
 	}
 	
+	public boolean hasNeighbors() {
+		return !neighbors.isEmpty();
+	}
+	
 }
