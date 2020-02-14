@@ -11,7 +11,7 @@ public class LinkedLists {
 	 * the head of the linked list. There are two options for
 	 * solving this problem:
 	 * 	1. Using a hashset to store values we've already seen
-	 * 	2. Using two pointers, and have one stary as the current
+	 * 	2. Using two pointers, and have one start as the current
 	 * 	   node and the other iterate the rest of the list looking
 	 * 	   for the same value.
 	 * 
@@ -233,7 +233,7 @@ public class LinkedLists {
 	 * e.g. 1 -> 2 -> 3 -> 2 -> 1
 	 * 
 	 * Time Complexity: O(n) --> We have to iterate through the list
-	 * once to get all the values, then we begin iterate through the
+	 * once to get all the values, then we begin to iterate through the
 	 * list to check if it is a palindrome, with worse case scenario,
 	 * we check half the list.
 	 * 
@@ -293,8 +293,6 @@ public class LinkedLists {
 		while (l2 != null) {
 			if (l1Nodes.contains(l2)) {
 				return l2;
-			} else if (l1Nodes.contains(l2.getNext())) {
-				return l2.getNext();
 			}
 			l2 = l2.getNext();
 		}

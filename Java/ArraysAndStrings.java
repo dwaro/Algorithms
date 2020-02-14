@@ -193,7 +193,7 @@ public class ArraysAndStrings {
 		if (str1.equals(str2)) return true;
 		
 		if (str1.length() < str2.length()) {
-			compareStrings(str2, str1);
+			return compareStrings(str2, str1);
 		}
 		
 		return compareStrings(str1, str2);
