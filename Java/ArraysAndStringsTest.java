@@ -127,5 +127,22 @@ class ArraysAndStringsTest {
 		assertTrue(aryStr.isStringRotation(" a b c d", "c d a b "));
 		assertFalse(aryStr.isStringRotation("Rodgers", "sregdoR"));
 	}
+	
+	@Test
+	void testArrayDupes() {
+		int[] test1 = {1, 4, 5, 2, 1, 4, 10, 5, 7, 8};
+		int[] t1 = {1, 4, 5};
+		int[] test2 = {1, 2, 2, 3, 4, 4, 5, 6, 6, 7};
+		int[] t2 = {2, 4, 6};
+		int[] test3 = {1};
+		int[] test4 = {1, 2, 3, 4, 5};
+		int[] t3 = {};
+		
+		assertArrayEquals(aryStr.arrayDupes(test1), t1);
+		assertArrayEquals(aryStr.arrayDupes(test2), t2);
+		assertArrayEquals(aryStr.arrayDupes(test3), t3);
+		assertArrayEquals(aryStr.arrayDupes(test4), t3);
+		
+	}
 
 }

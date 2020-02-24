@@ -373,5 +373,37 @@ public class ArraysAndStrings {
 		
 		return str1str1.contains(str2);
 	}
+	
+	/*
+	 * Problem: find the duplicates within an array.
+	 * 
+	 * The brute force approach would be O(n^2), checking for each
+	 * element in the array, if it exists in the rest of the array.
+	 * A faster approach exposes hashing (a HashSet) in this case,
+	 * to reduce the time complexity to O(n).
+	 * 
+	 * 
+	 */
+	public int[] arrayDupes(int[] arr) {
+		ArrayList<Integer> duplicates = new ArrayList<>();
+		
+		if (arr.length < 2 || arr == null) {
+			int[] r = new int[0];
+			return r;
+		}
+		
+		HashSet<Integer> uniques = new HashSet<>();
+		
+		for (int i: arr) {
+			if (uniques.add(i) == false) duplicates.add(i);
+		}
+		
+		int[] result = new int[duplicates.size()];
+		for (int i = 0; i < duplicates.size(); i++) {
+			result[i] = duplicates.get(i);
+		}
+		
+		return result;
+	}
 
 }
