@@ -19,6 +19,9 @@ describe('Testing Constructors', () => {
 
     let mySet2 = new CustomSet([]);
     expect(mySet2.values).toEqual([]);
+
+    let mySet3 = new CustomSet();
+    expect(mySet3.values).toEqual([]);
   });
 });
 
@@ -60,3 +63,13 @@ describe('Contains test', () => {
     expect(mySet.contains(val)).toEqual(expected);
   });
 });
+
+describe('Remove tests', () => {});
+
+describe('Union tests', () => {});
+
+describe('Intersection tests', () => {});
+
+describe('Subset tests', () => {});
+
+describe('Size tests', () => {});

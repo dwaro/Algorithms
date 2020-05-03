@@ -1,10 +1,19 @@
 export default class CustomSet {
   constructor(values) {
-    if (values !== undefined && values !== null && values !== []) {
-      this._values = values;
-    } else {
-      this._values = [];
-    }
+    this._values = this.convertToSet(values);
+  }
+
+  convertToSet(arr) {
+    let newSet = [];
+    if (arr === undefined || arr === null || arr === []) return newSet;
+
+    arr.forEach((val) => {
+      if (!newSet.includes(val)) {
+        newSet.push(val);
+      }
+    });
+
+    return newSet;
   }
 
   contains(val) {
@@ -83,18 +92,6 @@ export default class CustomSet {
   }
 }
 
-// let uniques = new CustomSet();
-// uniques.add(1);
-// uniques.add(4);
-// uniques.add(5);
-// uniques.add(2);
-// uniques.add(3);
-// uniques.add(5);
-// uniques.add(2);
-// uniques.add(9);
-// console.log(uniques.values);
-// console.log(uniques.contains(9));
-// console.log(uniques.contains(23));
 // uniques.remove(4);
 // console.log(uniques.values);
 // console.log(uniques.contains(4));
