@@ -24,19 +24,21 @@ describe('Testing Constructors', () => {
 
 describe('Add tests', () => {
   each([
-    [[1]],
-    [[1, 2]],
-    [[1, 2, 3, 4, 5, 6, 1, 2, 4, 5, 10]],
-    [[1, 1, 1, 1, 1]],
-  ]).test('Adding values to set.', (values) => {
-    let arr = [];
+    [[1], [1]],
+    [
+      [1, 2],
+      [1, 2],
+    ],
+    [
+      [1, 2, 3, 4, 5, 6, 1, 2, 4, 5, 10],
+      [1, 2, 3, 4, 5, 6, 10],
+    ],
+    [[1, 1, 1, 1, 1], [1]],
+  ]).test('Adding values to set.', (values, expected) => {
     let mySet = new CustomSet();
     values.forEach((val) => {
       mySet.add(val);
-      if (!arr.includes(val)) {
-        arr.push(val);
-      }
     });
-    expect(mySet.values).toEqual(arr);
+    expect(mySet.values).toEqual(expected);
   });
 });
