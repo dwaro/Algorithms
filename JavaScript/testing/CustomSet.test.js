@@ -42,3 +42,21 @@ describe('Add tests', () => {
     expect(mySet.values).toEqual(expected);
   });
 });
+
+describe('Contains test', () => {
+  const mySet = new CustomSet([1, 3, 8, 5, 6, -3]);
+  each([
+    [1, true],
+    [2, false],
+    [5, true],
+    [10, false],
+    [6, true],
+    [-18, false],
+    [8, true],
+    [-3, true],
+    ['hello', false],
+    [[1, 2, 3], false],
+  ]).test('Contains value', (val, expected) => {
+    expect(mySet.contains(val)).toEqual(expected);
+  });
+});
