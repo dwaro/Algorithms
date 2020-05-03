@@ -1,0 +1,22 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "CustomSet.js",
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel": "^6.23.0",
+    "babel-jest": "^25.5.1",
+    "jest": "^25.5.4",
+    "jest-each": "^25.5.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Jake Waro",
+  "license": "ISC"
+}
