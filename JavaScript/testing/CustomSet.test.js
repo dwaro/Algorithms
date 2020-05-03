@@ -23,6 +23,20 @@ describe('Testing Constructors', () => {
     let mySet3 = new CustomSet();
     expect(mySet3.values).toEqual([]);
   });
+
+  each([
+    [
+      [1, 1, 1, 2],
+      [1, 2],
+    ],
+    [
+      [1, 2, 3, 4, 4],
+      [1, 2, 3, 4],
+    ],
+  ]).test('Repeat values', (values, expected) => {
+    let mySet = new CustomSet(values);
+    expect(mySet.values).toEqual(expected);
+  });
 });
 
 describe('Add tests', () => {
